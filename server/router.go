@@ -6,14 +6,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// NewRouter : Router setting
+// NewRouter : 设置路由
 func NewRouter() *gin.Engine {
-	router := gin.Default()
+	r := gin.Default()
 
 	// Router
-	v1 := router.Group("api/v1")
+	v1 := r.Group("api/v1")
 	{
 		v1.POST("ping", api.Ping)
 	}
-	return router
+	return r
 }

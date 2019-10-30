@@ -1,11 +1,14 @@
 package main
 
 import (
-	"bufgo/server"
+	"bufgo/conf"
 )
 
 func main() {
-	// Load router
-	r := server.NewRouter()
-	r.Run()
+	// 初始化配置
+	conf.Init()
+
+	// 加载路由
+	//r := server.NewRouter()
+	//r.Run()
 }
