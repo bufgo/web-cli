@@ -2,11 +2,10 @@ package db
 
 import (
 	mysqlDB "bufgo/db/mysql"
+	postgresqlDB "bufgo/db/postgresql"
 	redisDB "bufgo/db/redis"
-    postgresqlDB "bufgo/db/postgresql"
-    //sqlite3DB "bufgo/db/sqlite3"
-    sqlserverDB "bufgo/db/sqlserver"
-	"fmt"
+	//sqlite3DB "bufgo/db/sqlite3"
+	sqlserverDB "bufgo/db/sqlserver"
 	"os"
 )
 
@@ -14,7 +13,6 @@ import (
 func Init(databaseList []string) {
 	// 判断需要开启的数据库
 	for i := range databaseList {
-		fmt.Printf("%s\n", databaseList[i])
 		switch databaseList[i] {
 		case "MYSQL":
 			mysqlDB.MYSQLInit(os.Getenv("MYSQL_DSN"))

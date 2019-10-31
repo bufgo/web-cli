@@ -1,7 +1,7 @@
 package db
 
 import (
-	"fmt"
+	"bufgo/logger"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mssql"
 	"time"
@@ -9,7 +9,7 @@ import (
 
 // SQLSERVER DB 数据库链接实例
 var (
-	SQLSERVERDB *gorm.DB
+	SQLSERVERClient *gorm.DB
 )
 
 // SQLSERVERInit 初始化SQLSERVER链接
@@ -17,11 +17,8 @@ func SQLSERVERInit(connString string) {
 	db, err := gorm.Open("mssql", connString)
 	db.LogMode(true)
 	if err != nil {
-		// TODO
 		// 连接数据库失败
-		//util.Log().Panic("连接数据库不成功", err)
-		fmt.Println("Connect sqlserver error")
-		return
+		logger.Panicf("Connect mssql error")
 	}
 	//设置连接池
 	//空闲
@@ -31,7 +28,7 @@ func SQLSERVERInit(connString string) {
 	//超时
 	db.DB().SetConnMaxLifetime(time.Second * 30)
 
-	SQLSERVERDB = db
+	SQLSERVERClient = db
 
-	fmt.Println("Connect sqlserver success")
+	logger.Infof("Connect mssql success")
 }

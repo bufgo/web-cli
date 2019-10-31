@@ -2,3 +2,4 @@
 .idea/
 go.sum
 .env
+zap.log

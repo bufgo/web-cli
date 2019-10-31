@@ -1,7 +1,7 @@
 package db
 
 import (
-	"fmt"
+	"bufgo/logger"
 	"github.com/go-redis/redis"
 	"os"
 	"strconv"
@@ -25,13 +25,11 @@ func REDISInit(connString string) {
 	_, err := client.Ping().Result()
 
 	if err != nil {
-		// TODO
-		//util.Log().Panic("连接Redis不成功", err)
-		fmt.Println("Connect redis error")
-		return
+		// 连接数据库失败
+		logger.Panicf("Connect redis error")
 	}
 
 	RedisClient = client
 
-	fmt.Println("Connect redis success")
+	logger.Infof("Connect redis success")
 }

@@ -1,28 +1,24 @@
 package db
 
 import (
-	"fmt"
+	"bufgo/logger"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"time"
 )
 
-// POSTGRESQL DB 数据库链接实例
+// POSTGRES DB 数据库链接实例
 var (
-	POSTGRESQLDB *gorm.DB
+	POSTGRESClient *gorm.DB
 )
 
-// POSTGRESQLInit 初始化POSTGRESQL链接
+// POSTGRESQLInit 初始化POSTGRES链接
 func POSTGRESQLInit(connString string) {
-	// "host=myhost port=myport user=gorm dbname=gorm password=mypassword"
 	db, err := gorm.Open("postgres", connString)
 	db.LogMode(true)
 	if err != nil {
-		// TODO
 		// 连接数据库失败
-		//util.Log().Panic("连接数据库不成功", err)
-		fmt.Println("Connect postgresql error")
-		return
+		logger.Panicf("Connect postgres error")
 	}
 	//设置连接池
 	//空闲
@@ -32,7 +28,7 @@ func POSTGRESQLInit(connString string) {
 	//超时
 	db.DB().SetConnMaxLifetime(time.Second * 30)
 
-	POSTGRESQLDB = db
+	POSTGRESClient = db
 
-	fmt.Println("Connect postgresql success")
+	logger.Infof("Connect postgres success")
 }
