@@ -1,7 +1,0 @@
-{"level":"panic","ts":"2019-10-31T14:38:39.362+0800","caller":"mysql/mysql.go:22","msg":"Connect mysql error"}
-{"level":"info","ts":"2019-10-31T14:47:06.970+0800","caller":"mysql/mysql.go:33","msg":"Connect mysql success"}
-{"level":"info","ts":"2019-10-31T14:47:06.985+0800","caller":"redis/redis.go:34","msg":"Connect redis success"}
-{"level":"info","ts":"2019-10-31T14:47:26.638+0800","caller":"redis/redis.go:34","msg":"Connect redis success"}
-{"level":"info","ts":"2019-10-31T14:47:26.658+0800","caller":"mysql/mysql.go:33","msg":"Connect mysql success"}
-{"level":"info","ts":"2019-10-31T14:48:11.672+0800","caller":"redis/redis.go:34","msg":"Connect redis success"}
-{"level":"info","ts":"2019-10-31T14:48:11.692+0800","caller":"mysql/mysql.go:33","msg":"Connect mysql success"}

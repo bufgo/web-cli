@@ -9,18 +9,18 @@ import (
 var (
 	// errorLogger 日志实例
 	errorLogger *zap.SugaredLogger
+	levelMap = map[string]zapcore.Level{
+		"debug":  zapcore.DebugLevel,
+		"info":   zapcore.InfoLevel,
+		"warn":   zapcore.WarnLevel,
+		"error":  zapcore.ErrorLevel,
+		"dpanic": zapcore.DPanicLevel,
+		"panic":  zapcore.PanicLevel,
+		"fatal":  zapcore.FatalLevel,
+	}
 )
 
-var levelMap = map[string]zapcore.Level{
-	"debug":  zapcore.DebugLevel,
-	"info":   zapcore.InfoLevel,
-	"warn":   zapcore.WarnLevel,
-	"error":  zapcore.ErrorLevel,
-	"dpanic": zapcore.DPanicLevel,
-	"panic":  zapcore.PanicLevel,
-	"fatal":  zapcore.FatalLevel,
-}
-
+// 获取Logger等级
 func getLoggerLevel(lvl string) zapcore.Level {
 	if level, ok := levelMap[lvl]; ok {
 		return level
@@ -28,6 +28,7 @@ func getLoggerLevel(lvl string) zapcore.Level {
 	return zapcore.InfoLevel
 }
 
+// 初始化
 func init() {
 	fileName := "zap.log"
 	level := getLoggerLevel("debug")
