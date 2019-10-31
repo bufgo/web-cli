@@ -20,9 +20,6 @@ func Init() {
 	// 从本地读取环境变量
 	godotenv.Load()
 
-	// 设置日志
-	//log.Init()
-
 	// 获取需要启动的数据库
 	envList, envErr = godotenv.Read()
 	if envErr != nil {

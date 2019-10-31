@@ -1,14 +1,17 @@
 package logger
 
 import (
+	"github.com/joho/godotenv"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
+	"os"
 )
 
 var (
 	// errorLogger 日志实例
 	errorLogger *zap.SugaredLogger
+	// 日志等级
 	levelMap = map[string]zapcore.Level{
 		"debug":  zapcore.DebugLevel,
 		"info":   zapcore.InfoLevel,
@@ -30,8 +33,10 @@ func getLoggerLevel(lvl string) zapcore.Level {
 
 // 初始化
 func init() {
-	fileName := "zap.log"
-	level := getLoggerLevel("debug")
+	// 加载环境变量
+	godotenv.Load()
+	fileName := os.Getenv("LOG_FILE")
+	level := getLoggerLevel(os.Getenv("LOG_LEVEL"))
 	syncWriter := zapcore.AddSync(&lumberjack.Logger{
 		Filename:  fileName,
 		MaxSize:   1 << 30, //1G
