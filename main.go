@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufgo/conf"
+	"bufgo/server"
 )
 
 func main() {
@@ -9,6 +10,6 @@ func main() {
 	conf.Init()
 
 	// 加载路由
-	//r := server.NewRouter()
-	//r.Run()
+	r := server.NewRouter()
+	r.Run()
 }
